@@ -8,5 +8,7 @@
 class Map
 {
 public:
-    std::vector<Crossroads>maps;        //由十字路口组成的地图
+    const static int maxn=20;
+    int row,col;    //行、列数
+    Crossroads maps[maxn][maxn];        //由十字路口组成的二维地图
 };
