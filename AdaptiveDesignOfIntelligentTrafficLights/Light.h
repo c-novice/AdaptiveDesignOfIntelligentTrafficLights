@@ -16,7 +16,7 @@ class Light
 {
 public:
     Color currentState;     //当前信号灯状态
-    int redTime;           //红灯时长
+    int redTime;            //红灯时长
     int yellowTime;         //黄灯时长
     int greenTime;          //绿灯时长
     int currentTime;        //当时状态持续的时长

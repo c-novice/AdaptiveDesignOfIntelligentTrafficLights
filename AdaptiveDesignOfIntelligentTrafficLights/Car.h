@@ -9,5 +9,4 @@ class Car
 public:
     int length;         //车长
     int speed;          //车速
-
 };

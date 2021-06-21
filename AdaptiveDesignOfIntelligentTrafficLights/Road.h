@@ -23,5 +23,6 @@ public:
     int straightWay;           //直行道数量
     int leftWay;               //左转道数量
     int rightWay;              //右转道数量
+    bool isBlocked;            //是否处于拥堵状态
     Orientation orientation;   //朝向
 };

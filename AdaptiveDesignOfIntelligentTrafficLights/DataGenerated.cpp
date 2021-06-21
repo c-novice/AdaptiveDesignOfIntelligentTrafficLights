@@ -4,6 +4,7 @@
 //生成数据
 class DataGenerated
 {
+public:
     DataGenerated(Map *myMap){
         myMap=new Map();
 
@@ -134,6 +135,5 @@ class DataGenerated
                 }
             }
         }
-
     }
 };
