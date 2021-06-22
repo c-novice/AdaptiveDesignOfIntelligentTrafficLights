@@ -4,6 +4,7 @@
 #endif // ROAD_H
 
 #include <vector>
+#include "Car.h"
 
 //朝向
 enum Orientation
@@ -25,4 +26,18 @@ public:
     int rightWay;              //右转道数量
     bool isBlocked;            //是否处于拥堵状态
     Orientation orientation;   //朝向
+    std::vector<Car>cars;      //该道路上的车
+
+public:
+    bool operator==(const Road r){
+        if(length!=r.length)return false;
+        if(limitMaxSpeed!=r.limitMaxSpeed)return false;
+        if(straightWay!=r.straightWay)return false;
+        if(leftWay!=r.leftWay)return false;
+        if(rightWay!=r.rightWay)return false;
+        if(isBlocked!=r.isBlocked)return false;
+        if(orientation!=r.orientation)return false;
+
+        return true;
+    }
 };

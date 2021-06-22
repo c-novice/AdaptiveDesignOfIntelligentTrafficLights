@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     DataGenerated.cpp \
+    Map.cpp \
     main.cpp \
     mainwindow.cpp
 
