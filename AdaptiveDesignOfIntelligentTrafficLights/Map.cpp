@@ -78,7 +78,35 @@ void Map::changeRoad(Car car, int remainDistance)
     }
 
     //确定道路后，尝试继续向前进
+    //获取当前道路的信号灯
+    Light currentLight=searchLightByRoad(car);
+    //case1：当前道路为红灯
+    if(currentLight.currentState==RED){
+        //1、考虑到十字路口的限制
+        int tmp=std::min(car.remainDistance,car.remainDistance);
+        //2、考虑前一辆车的限制
+        tmp=std::min(tmp,std::min(car.remainDistance,car.preDistance-car.minDistance));
 
+        car.remainDistance-=tmp;    //更新和十字路口的距离
+        //查找该道路上的前一辆车
+        Car preCar;
+        for(int i=0;i<car.currentRoad.cars.size();++i){
+            preCar=car.currentRoad.cars[i];
+            if(preCar.remainDistance>=car.remainDistance)
+                break;
+        }
+        //计算与前一辆车的间距
+        car.preDistance=car.remainDistance-preCar.remainDistance;
+    }else{
+        //判断是否可以出道路
+        if(car.remainDistance<=car.remainDistance){
+            //该车切换道路
+            changeRoad(car,car.remainDistance-car.remainDistance);
+        }else{
+            //只是前进，相对距离不变
+            car.remainDistance-=car.remainDistance;
+        }
+    }
 
 }
 
@@ -144,3 +172,44 @@ void Map::refreshAllLights()
         }
     }
 }
+
+void Map::runOneSecond()
+{
+    //所有的车辆根据信号灯模拟
+    for(Car car:cars){
+        //获取当前道路的信号灯
+        Light currentLight=searchLightByRoad(car);
+        //case1：当前道路为红灯
+        if(currentLight.currentState==RED){
+            //1、考虑到十字路口的限制
+            int tmp=std::min(car.remainDistance,car.speed);
+            //2、考虑前一辆车的限制
+            tmp=std::min(tmp,std::min(car.speed,car.preDistance-car.minDistance));
+
+            car.remainDistance-=tmp;    //更新和十字路口的距离
+            //查找该道路上的前一辆车
+            Car preCar;
+            for(int i=0;i<car.currentRoad.cars.size();++i){
+                preCar=car.currentRoad.cars[i];
+                if(preCar.remainDistance>=car.remainDistance)
+                    break;
+            }
+            //计算与前一辆车的间距
+            car.preDistance=car.remainDistance-preCar.remainDistance;
+        }else{
+            //判断是否可以出道路
+            if(car.remainDistance<=car.speed){
+                //该车切换道路
+                changeRoad(car,car.speed-car.remainDistance);
+            }else{
+                //只是前进，相对距离不变
+                car.remainDistance-=car.speed;
+            }
+        }
+    }
+
+    //更新所有的信号灯
+    refreshAllLights();
+}
+
+

@@ -12,7 +12,8 @@ SOURCES += \
     DataGenerated.cpp \
     Map.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    pso.cpp
 
 HEADERS += \
     Car.h \
@@ -20,7 +21,8 @@ HEADERS += \
     Light.h \
     Map.h \
     Road.h \
-    mainwindow.h
+    mainwindow.h \
+    pso.h
 
 FORMS += \
     mainwindow.ui

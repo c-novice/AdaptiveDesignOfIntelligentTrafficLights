@@ -16,9 +16,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    //模拟运行1s
-    void runOneSecond();
-
 private:
     Ui::MainWindow *ui;
     Map *myMap;
